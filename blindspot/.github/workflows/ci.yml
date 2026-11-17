@@ -1,0 +1,33 @@
+name: ci
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: ["3.10", "3.11", "3.12"]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+      - name: Unit tests
+        run: python3 -m unittest discover -s tests -p 'test_*.py' -v
+        env:
+          PYTHONPATH: ${{ github.workspace }}
+      - name: Behavior freeze
+        run: python3 tests/golden_check.py --check
+        env:
+          PYTHONPATH: ${{ github.workspace }}
+      - name: Ten-round adversarial audit
+        run: python3 tests/audit_harness.py
+        env:
+          PYTHONPATH: ${{ github.workspace }}
+      - name: Demo smoke test (expected exit 1)
+        run: python3 -m blindspot demo; test $$? -eq 1
+        env:
+          PYTHONPATH: ${{ github.workspace }}

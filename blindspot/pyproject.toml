@@ -1,0 +1,35 @@
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "blindspot"
+version = "0.1.0"
+description = "Measure what an AI coding agent's shell command hid from it"
+readme = "README.md"
+requires-python = ">=3.10"
+license = { text = "MPL-2.0" }
+keywords = ["ai-agents", "developer-tools", "observability", "cli", "testing"]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Environment :: Console",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: Mozilla Public License 2.0 (MPL 2.0)",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3 :: Only",
+    "Topic :: Software Development :: Quality Assurance",
+]
+dependencies = []
+
+[project.optional-dependencies]
+test = ["pytest>=8"]
+
+[project.scripts]
+blindspot = "blindspot.cli:main"
+
+[tool.setuptools.packages.find]
+include = ["blindspot*"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = ["test_*.py"]

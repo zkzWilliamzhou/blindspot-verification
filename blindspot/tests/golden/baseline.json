@@ -1,0 +1,803 @@
+{
+  "capped": {
+    "capture": {
+      "exit_code": 1,
+      "network_backend": "none",
+      "stderr_sha256": "sha256:9f51eab082f795d8acb49c579b87e19cc54845393849e6c4dab337142b492cf5",
+      "stderr_truncated": false,
+      "stdout_sha256": "sha256:dd928dda3c2b56da224746a693942161032151af523fa358d9ec60d6a4dc0adf",
+      "stdout_truncated": false,
+      "timed_out": false
+    },
+    "clean_command": "python3 <ROOT>/fixture.py",
+    "degradations": [],
+    "delta": {
+      "exit_code_laundered": false,
+      "false_green": false,
+      "false_red": false,
+      "first_divergence_byte": 20,
+      "hidden_failure_markers": [
+        "AssertionError",
+        "Error"
+      ],
+      "hidden_stderr_excerpt": "",
+      "hidden_stderr_lines": 0,
+      "hidden_stdout_excerpt": "FAILED tests/test_a.py::test_one - AssertionError: expected 2, got 3\nFAILED tests/test_b.py::test_two - AssertionError: expected 2, got 3\ncollected 3 items",
+      "hidden_stdout_lines": 3,
+      "observed_exit_code": 1,
+      "reasons": [
+        "3 stdout line(s) never reached the agent",
+        "hidden failure markers: AssertionError, Error"
+      ],
+      "stderr_bytes_seen": 20,
+      "stderr_bytes_true": 20,
+      "stdout_bytes_seen": 94,
+      "stdout_bytes_true": 159,
+      "true_exit_code": 1,
+      "verdict": "DEGRADED"
+    },
+    "observation": {
+      "applied": [
+        "output capped at 40 bytes"
+      ],
+      "approximations": [
+        "the harness output cap is simulated with a head/tail window; real harnesses may use different truncation policies"
+      ],
+      "unsimulated": []
+    },
+    "rc": 0,
+    "refusals": []
+  },
+  "echo_ok": {
+    "capture": {
+      "exit_code": 0,
+      "network_backend": "none",
+      "stderr_sha256": "sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_truncated": false,
+      "stdout_sha256": "sha256:5891b5b522d5df086d0ff0b110fbd9d21bb4fc7163af34d08286a2e846f6be03",
+      "stdout_truncated": false,
+      "timed_out": false
+    },
+    "clean_command": "echo hello",
+    "degradations": [],
+    "delta": {
+      "exit_code_laundered": false,
+      "false_green": false,
+      "false_red": false,
+      "first_divergence_byte": null,
+      "hidden_failure_markers": [],
+      "hidden_stderr_excerpt": "",
+      "hidden_stderr_lines": 0,
+      "hidden_stdout_excerpt": "",
+      "hidden_stdout_lines": 0,
+      "observed_exit_code": 0,
+      "reasons": [
+        "the observation faithfully represents the real execution"
+      ],
+      "stderr_bytes_seen": 0,
+      "stderr_bytes_true": 0,
+      "stdout_bytes_seen": 6,
+      "stdout_bytes_true": 6,
+      "true_exit_code": 0,
+      "verdict": "FAITHFUL"
+    },
+    "observation": {
+      "applied": [],
+      "approximations": [],
+      "unsimulated": []
+    },
+    "rc": 0,
+    "refusals": []
+  },
+  "grep_ok": {
+    "capture": {
+      "exit_code": 1,
+      "network_backend": "none",
+      "stderr_sha256": "sha256:9f51eab082f795d8acb49c579b87e19cc54845393849e6c4dab337142b492cf5",
+      "stderr_truncated": false,
+      "stdout_sha256": "sha256:dd928dda3c2b56da224746a693942161032151af523fa358d9ec60d6a4dc0adf",
+      "stdout_truncated": false,
+      "timed_out": false
+    },
+    "clean_command": "python3 <ROOT>/fixture.py",
+    "degradations": [
+      {
+        "args": [],
+        "kind": "pipefail_absent",
+        "severity": "critical",
+        "span": "|",
+        "supported": true
+      },
+      {
+        "args": [
+          "grep",
+          "OK"
+        ],
+        "kind": "pipe_filter",
+        "severity": "critical",
+        "span": "grep OK",
+        "supported": true
+      }
+    ],
+    "delta": {
+      "exit_code_laundered": true,
+      "false_green": true,
+      "false_red": false,
+      "first_divergence_byte": 0,
+      "hidden_failure_markers": [
+        "AssertionError",
+        "Error",
+        "FAIL",
+        "FAILED"
+      ],
+      "hidden_stderr_excerpt": "",
+      "hidden_stderr_lines": 0,
+      "hidden_stdout_excerpt": "FAILED tests/test_a.py::test_one - AssertionError: expected 2, got 3\nFAILED tests/test_b.py::test_two - AssertionError: expected 2, got 3\ncollected 3 items",
+      "hidden_stdout_lines": 3,
+      "observed_exit_code": 0,
+      "reasons": [
+        "the agent's view looks successful while the real run failed",
+        "3 stdout line(s) never reached the agent",
+        "hidden failure markers: AssertionError, Error, FAIL, FAILED"
+      ],
+      "stderr_bytes_seen": 20,
+      "stderr_bytes_true": 20,
+      "stdout_bytes_seen": 3,
+      "stdout_bytes_true": 159,
+      "true_exit_code": 1,
+      "verdict": "MISLEADING"
+    },
+    "observation": {
+      "applied": [
+        "pipe grep OK",
+        "shell reported the last pipeline stage's exit status"
+      ],
+      "approximations": [],
+      "unsimulated": []
+    },
+    "rc": 1,
+    "refusals": []
+  },
+  "head2": {
+    "capture": {
+      "exit_code": 1,
+      "network_backend": "none",
+      "stderr_sha256": "sha256:9f51eab082f795d8acb49c579b87e19cc54845393849e6c4dab337142b492cf5",
+      "stderr_truncated": false,
+      "stdout_sha256": "sha256:dd928dda3c2b56da224746a693942161032151af523fa358d9ec60d6a4dc0adf",
+      "stdout_truncated": false,
+      "timed_out": false
+    },
+    "clean_command": "python3 <ROOT>/fixture.py",
+    "degradations": [
+      {
+        "args": [],
+        "kind": "pipefail_absent",
+        "severity": "critical",
+        "span": "|",
+        "supported": true
+      },
+      {
+        "args": [
+          "head",
+          "-2"
+        ],
+        "kind": "pipe_filter",
+        "severity": "critical",
+        "span": "head -2",
+        "supported": true
+      }
+    ],
+    "delta": {
+      "exit_code_laundered": true,
+      "false_green": false,
+      "false_red": false,
+      "first_divergence_byte": 138,
+      "hidden_failure_markers": [],
+      "hidden_stderr_excerpt": "",
+      "hidden_stderr_lines": 0,
+      "hidden_stdout_excerpt": "collected 3 items\nOK",
+      "hidden_stdout_lines": 2,
+      "observed_exit_code": 0,
+      "reasons": [
+        "real exit status 1 was reported as 0",
+        "2 stdout line(s) never reached the agent"
+      ],
+      "stderr_bytes_seen": 20,
+      "stderr_bytes_true": 20,
+      "stdout_bytes_seen": 138,
+      "stdout_bytes_true": 159,
+      "true_exit_code": 1,
+      "verdict": "DEGRADED"
+    },
+    "observation": {
+      "applied": [
+        "pipe head -2",
+        "shell reported the last pipeline stage's exit status"
+      ],
+      "approximations": [],
+      "unsimulated": []
+    },
+    "rc": 0,
+    "refusals": []
+  },
+  "launder": {
+    "capture": {
+      "exit_code": 1,
+      "network_backend": "none",
+      "stderr_sha256": "sha256:9f51eab082f795d8acb49c579b87e19cc54845393849e6c4dab337142b492cf5",
+      "stderr_truncated": false,
+      "stdout_sha256": "sha256:dd928dda3c2b56da224746a693942161032151af523fa358d9ec60d6a4dc0adf",
+      "stdout_truncated": false,
+      "timed_out": false
+    },
+    "clean_command": "python3 <ROOT>/fixture.py",
+    "degradations": [
+      {
+        "args": [
+          "true"
+        ],
+        "kind": "exit_laundered",
+        "severity": "critical",
+        "span": "|| true",
+        "supported": true
+      }
+    ],
+    "delta": {
+      "exit_code_laundered": true,
+      "false_green": false,
+      "false_red": false,
+      "first_divergence_byte": null,
+      "hidden_failure_markers": [],
+      "hidden_stderr_excerpt": "",
+      "hidden_stderr_lines": 0,
+      "hidden_stdout_excerpt": "",
+      "hidden_stdout_lines": 0,
+      "observed_exit_code": 0,
+      "reasons": [
+        "real exit status 1 was reported as 0"
+      ],
+      "stderr_bytes_seen": 20,
+      "stderr_bytes_true": 20,
+      "stdout_bytes_seen": 159,
+      "stdout_bytes_true": 159,
+      "true_exit_code": 1,
+      "verdict": "DEGRADED"
+    },
+    "observation": {
+      "applied": [
+        "exit status replaced with success"
+      ],
+      "approximations": [],
+      "unsimulated": []
+    },
+    "rc": 0,
+    "refusals": []
+  },
+  "merged": {
+    "capture": {
+      "exit_code": 1,
+      "network_backend": "none",
+      "stderr_sha256": "sha256:9f51eab082f795d8acb49c579b87e19cc54845393849e6c4dab337142b492cf5",
+      "stderr_truncated": false,
+      "stdout_sha256": "sha256:dd928dda3c2b56da224746a693942161032151af523fa358d9ec60d6a4dc0adf",
+      "stdout_truncated": false,
+      "timed_out": false
+    },
+    "clean_command": "python3 <ROOT>/fixture.py",
+    "degradations": [
+      {
+        "args": [],
+        "kind": "pipefail_absent",
+        "severity": "critical",
+        "span": "|",
+        "supported": true
+      },
+      {
+        "args": [],
+        "kind": "stream_merged",
+        "severity": "warning",
+        "span": "2>&1",
+        "supported": true
+      },
+      {
+        "args": [
+          "grep",
+          "OK"
+        ],
+        "kind": "pipe_filter",
+        "severity": "critical",
+        "span": "grep OK",
+        "supported": true
+      }
+    ],
+    "delta": {
+      "exit_code_laundered": true,
+      "false_green": true,
+      "false_red": false,
+      "first_divergence_byte": 0,
+      "hidden_failure_markers": [
+        "AssertionError",
+        "Error",
+        "FAIL",
+        "FAILED"
+      ],
+      "hidden_stderr_excerpt": "E: detail on stderr",
+      "hidden_stderr_lines": 1,
+      "hidden_stdout_excerpt": "FAILED tests/test_a.py::test_one - AssertionError: expected 2, got 3\nFAILED tests/test_b.py::test_two - AssertionError: expected 2, got 3\ncollected 3 items",
+      "hidden_stdout_lines": 3,
+      "observed_exit_code": 0,
+      "reasons": [
+        "the agent's view looks successful while the real run failed",
+        "3 stdout line(s) never reached the agent",
+        "1 stderr line(s) never reached the agent",
+        "hidden failure markers: AssertionError, Error, FAIL, FAILED"
+      ],
+      "stderr_bytes_seen": 0,
+      "stderr_bytes_true": 20,
+      "stdout_bytes_seen": 3,
+      "stdout_bytes_true": 159,
+      "true_exit_code": 1,
+      "verdict": "MISLEADING"
+    },
+    "observation": {
+      "applied": [
+        "stream_merged",
+        "pipe grep OK",
+        "shell reported the last pipeline stage's exit status"
+      ],
+      "approximations": [
+        "stdout/stderr interleaving cannot be recovered without a PTY; streams are concatenated in capture order"
+      ],
+      "unsimulated": []
+    },
+    "rc": 1,
+    "refusals": []
+  },
+  "pipefail": {
+    "capture": {
+      "exit_code": 1,
+      "network_backend": "none",
+      "stderr_sha256": "sha256:9f51eab082f795d8acb49c579b87e19cc54845393849e6c4dab337142b492cf5",
+      "stderr_truncated": false,
+      "stdout_sha256": "sha256:dd928dda3c2b56da224746a693942161032151af523fa358d9ec60d6a4dc0adf",
+      "stdout_truncated": false,
+      "timed_out": false
+    },
+    "clean_command": "python3 <ROOT>/fixture.py",
+    "degradations": [
+      {
+        "args": [
+          "tail",
+          "-1"
+        ],
+        "kind": "pipe_filter",
+        "severity": "critical",
+        "span": "tail -1",
+        "supported": true
+      }
+    ],
+    "delta": {
+      "exit_code_laundered": false,
+      "false_green": false,
+      "false_red": false,
+      "first_divergence_byte": 0,
+      "hidden_failure_markers": [
+        "AssertionError",
+        "Error",
+        "FAIL",
+        "FAILED"
+      ],
+      "hidden_stderr_excerpt": "",
+      "hidden_stderr_lines": 0,
+      "hidden_stdout_excerpt": "FAILED tests/test_a.py::test_one - AssertionError: expected 2, got 3\nFAILED tests/test_b.py::test_two - AssertionError: expected 2, got 3\ncollected 3 items",
+      "hidden_stdout_lines": 3,
+      "observed_exit_code": 1,
+      "reasons": [
+        "3 stdout line(s) never reached the agent",
+        "hidden failure markers: AssertionError, Error, FAIL, FAILED"
+      ],
+      "stderr_bytes_seen": 20,
+      "stderr_bytes_true": 20,
+      "stdout_bytes_seen": 3,
+      "stdout_bytes_true": 159,
+      "true_exit_code": 1,
+      "verdict": "DEGRADED"
+    },
+    "observation": {
+      "applied": [
+        "pipe tail -1"
+      ],
+      "approximations": [],
+      "unsimulated": []
+    },
+    "rc": 0,
+    "refusals": []
+  },
+  "plain": {
+    "capture": {
+      "exit_code": 1,
+      "network_backend": "none",
+      "stderr_sha256": "sha256:9f51eab082f795d8acb49c579b87e19cc54845393849e6c4dab337142b492cf5",
+      "stderr_truncated": false,
+      "stdout_sha256": "sha256:dd928dda3c2b56da224746a693942161032151af523fa358d9ec60d6a4dc0adf",
+      "stdout_truncated": false,
+      "timed_out": false
+    },
+    "clean_command": "python3 <ROOT>/fixture.py",
+    "degradations": [],
+    "delta": {
+      "exit_code_laundered": false,
+      "false_green": false,
+      "false_red": false,
+      "first_divergence_byte": null,
+      "hidden_failure_markers": [],
+      "hidden_stderr_excerpt": "",
+      "hidden_stderr_lines": 0,
+      "hidden_stdout_excerpt": "",
+      "hidden_stdout_lines": 0,
+      "observed_exit_code": 1,
+      "reasons": [
+        "the observation faithfully represents the real execution"
+      ],
+      "stderr_bytes_seen": 20,
+      "stderr_bytes_true": 20,
+      "stdout_bytes_seen": 159,
+      "stdout_bytes_true": 159,
+      "true_exit_code": 1,
+      "verdict": "FAITHFUL"
+    },
+    "observation": {
+      "applied": [],
+      "approximations": [],
+      "unsimulated": []
+    },
+    "rc": 0,
+    "refusals": []
+  },
+  "stderr_null": {
+    "capture": {
+      "exit_code": 1,
+      "network_backend": "none",
+      "stderr_sha256": "sha256:9f51eab082f795d8acb49c579b87e19cc54845393849e6c4dab337142b492cf5",
+      "stderr_truncated": false,
+      "stdout_sha256": "sha256:dd928dda3c2b56da224746a693942161032151af523fa358d9ec60d6a4dc0adf",
+      "stdout_truncated": false,
+      "timed_out": false
+    },
+    "clean_command": "python3 <ROOT>/fixture.py",
+    "degradations": [
+      {
+        "args": [],
+        "kind": "stderr_suppressed",
+        "severity": "critical",
+        "span": "2>/dev/null",
+        "supported": true
+      }
+    ],
+    "delta": {
+      "exit_code_laundered": false,
+      "false_green": false,
+      "false_red": false,
+      "first_divergence_byte": null,
+      "hidden_failure_markers": [],
+      "hidden_stderr_excerpt": "E: detail on stderr",
+      "hidden_stderr_lines": 1,
+      "hidden_stdout_excerpt": "",
+      "hidden_stdout_lines": 0,
+      "observed_exit_code": 1,
+      "reasons": [
+        "1 stderr line(s) never reached the agent"
+      ],
+      "stderr_bytes_seen": 0,
+      "stderr_bytes_true": 20,
+      "stdout_bytes_seen": 159,
+      "stdout_bytes_true": 159,
+      "true_exit_code": 1,
+      "verdict": "DEGRADED"
+    },
+    "observation": {
+      "applied": [
+        "stderr_suppressed"
+      ],
+      "approximations": [],
+      "unsimulated": []
+    },
+    "rc": 0,
+    "refusals": []
+  },
+  "stdout_null": {
+    "capture": {
+      "exit_code": 1,
+      "network_backend": "none",
+      "stderr_sha256": "sha256:9f51eab082f795d8acb49c579b87e19cc54845393849e6c4dab337142b492cf5",
+      "stderr_truncated": false,
+      "stdout_sha256": "sha256:dd928dda3c2b56da224746a693942161032151af523fa358d9ec60d6a4dc0adf",
+      "stdout_truncated": false,
+      "timed_out": false
+    },
+    "clean_command": "python3 <ROOT>/fixture.py",
+    "degradations": [
+      {
+        "args": [],
+        "kind": "stdout_suppressed",
+        "severity": "critical",
+        "span": ">/dev/null",
+        "supported": true
+      }
+    ],
+    "delta": {
+      "exit_code_laundered": false,
+      "false_green": false,
+      "false_red": false,
+      "first_divergence_byte": 0,
+      "hidden_failure_markers": [
+        "AssertionError",
+        "Error",
+        "FAIL",
+        "FAILED"
+      ],
+      "hidden_stderr_excerpt": "",
+      "hidden_stderr_lines": 0,
+      "hidden_stdout_excerpt": "FAILED tests/test_a.py::test_one - AssertionError: expected 2, got 3\nFAILED tests/test_b.py::test_two - AssertionError: expected 2, got 3\ncollected 3 items\nOK",
+      "hidden_stdout_lines": 4,
+      "observed_exit_code": 1,
+      "reasons": [
+        "4 stdout line(s) never reached the agent",
+        "hidden failure markers: AssertionError, Error, FAIL, FAILED"
+      ],
+      "stderr_bytes_seen": 20,
+      "stderr_bytes_true": 20,
+      "stdout_bytes_seen": 0,
+      "stdout_bytes_true": 159,
+      "true_exit_code": 1,
+      "verdict": "DEGRADED"
+    },
+    "observation": {
+      "applied": [
+        "stdout_suppressed"
+      ],
+      "approximations": [],
+      "unsimulated": []
+    },
+    "rc": 0,
+    "refusals": []
+  },
+  "strict": {
+    "capture": {
+      "exit_code": 1,
+      "network_backend": "none",
+      "stderr_sha256": "sha256:9f51eab082f795d8acb49c579b87e19cc54845393849e6c4dab337142b492cf5",
+      "stderr_truncated": false,
+      "stdout_sha256": "sha256:dd928dda3c2b56da224746a693942161032151af523fa358d9ec60d6a4dc0adf",
+      "stdout_truncated": false,
+      "timed_out": false
+    },
+    "clean_command": "python3 <ROOT>/fixture.py",
+    "degradations": [
+      {
+        "args": [],
+        "kind": "pipefail_absent",
+        "severity": "critical",
+        "span": "|",
+        "supported": true
+      },
+      {
+        "args": [
+          "tail",
+          "-1"
+        ],
+        "kind": "pipe_filter",
+        "severity": "critical",
+        "span": "tail -1",
+        "supported": true
+      }
+    ],
+    "delta": {
+      "exit_code_laundered": true,
+      "false_green": true,
+      "false_red": false,
+      "first_divergence_byte": 0,
+      "hidden_failure_markers": [
+        "AssertionError",
+        "Error",
+        "FAIL",
+        "FAILED"
+      ],
+      "hidden_stderr_excerpt": "",
+      "hidden_stderr_lines": 0,
+      "hidden_stdout_excerpt": "FAILED tests/test_a.py::test_one - AssertionError: expected 2, got 3\nFAILED tests/test_b.py::test_two - AssertionError: expected 2, got 3\ncollected 3 items",
+      "hidden_stdout_lines": 3,
+      "observed_exit_code": 0,
+      "reasons": [
+        "the agent's view looks successful while the real run failed",
+        "3 stdout line(s) never reached the agent",
+        "hidden failure markers: AssertionError, Error, FAIL, FAILED"
+      ],
+      "stderr_bytes_seen": 20,
+      "stderr_bytes_true": 20,
+      "stdout_bytes_seen": 3,
+      "stdout_bytes_true": 159,
+      "true_exit_code": 1,
+      "verdict": "MISLEADING"
+    },
+    "observation": {
+      "applied": [
+        "pipe tail -1",
+        "shell reported the last pipeline stage's exit status"
+      ],
+      "approximations": [],
+      "unsimulated": []
+    },
+    "rc": 1,
+    "refusals": []
+  },
+  "tail1": {
+    "capture": {
+      "exit_code": 1,
+      "network_backend": "none",
+      "stderr_sha256": "sha256:9f51eab082f795d8acb49c579b87e19cc54845393849e6c4dab337142b492cf5",
+      "stderr_truncated": false,
+      "stdout_sha256": "sha256:dd928dda3c2b56da224746a693942161032151af523fa358d9ec60d6a4dc0adf",
+      "stdout_truncated": false,
+      "timed_out": false
+    },
+    "clean_command": "python3 <ROOT>/fixture.py",
+    "degradations": [
+      {
+        "args": [],
+        "kind": "pipefail_absent",
+        "severity": "critical",
+        "span": "|",
+        "supported": true
+      },
+      {
+        "args": [
+          "tail",
+          "-1"
+        ],
+        "kind": "pipe_filter",
+        "severity": "critical",
+        "span": "tail -1",
+        "supported": true
+      }
+    ],
+    "delta": {
+      "exit_code_laundered": true,
+      "false_green": true,
+      "false_red": false,
+      "first_divergence_byte": 0,
+      "hidden_failure_markers": [
+        "AssertionError",
+        "Error",
+        "FAIL",
+        "FAILED"
+      ],
+      "hidden_stderr_excerpt": "",
+      "hidden_stderr_lines": 0,
+      "hidden_stdout_excerpt": "FAILED tests/test_a.py::test_one - AssertionError: expected 2, got 3\nFAILED tests/test_b.py::test_two - AssertionError: expected 2, got 3\ncollected 3 items",
+      "hidden_stdout_lines": 3,
+      "observed_exit_code": 0,
+      "reasons": [
+        "the agent's view looks successful while the real run failed",
+        "3 stdout line(s) never reached the agent",
+        "hidden failure markers: AssertionError, Error, FAIL, FAILED"
+      ],
+      "stderr_bytes_seen": 20,
+      "stderr_bytes_true": 20,
+      "stdout_bytes_seen": 3,
+      "stdout_bytes_true": 159,
+      "true_exit_code": 1,
+      "verdict": "MISLEADING"
+    },
+    "observation": {
+      "applied": [
+        "pipe tail -1",
+        "shell reported the last pipeline stage's exit status"
+      ],
+      "approximations": [],
+      "unsimulated": []
+    },
+    "rc": 1,
+    "refusals": []
+  },
+  "unsupported": {
+    "capture": null,
+    "clean_command": "python3 <ROOT>/fixture.py",
+    "degradations": [
+      {
+        "args": [],
+        "kind": "pipefail_absent",
+        "severity": "critical",
+        "span": "|",
+        "supported": true
+      },
+      {
+        "args": [
+          "sed",
+          "-n",
+          "1p"
+        ],
+        "kind": "unsupported",
+        "severity": "warning",
+        "span": "sed -n 1p",
+        "supported": false
+      }
+    ],
+    "delta": null,
+    "observation": null,
+    "rc": 2,
+    "refusals": [
+      "filter 'sed' has side effects or non-reproducible semantics"
+    ]
+  },
+  "wc_l": {
+    "capture": {
+      "exit_code": 1,
+      "network_backend": "none",
+      "stderr_sha256": "sha256:9f51eab082f795d8acb49c579b87e19cc54845393849e6c4dab337142b492cf5",
+      "stderr_truncated": false,
+      "stdout_sha256": "sha256:dd928dda3c2b56da224746a693942161032151af523fa358d9ec60d6a4dc0adf",
+      "stdout_truncated": false,
+      "timed_out": false
+    },
+    "clean_command": "python3 <ROOT>/fixture.py",
+    "degradations": [
+      {
+        "args": [],
+        "kind": "pipefail_absent",
+        "severity": "critical",
+        "span": "|",
+        "supported": true
+      },
+      {
+        "args": [
+          "wc",
+          "-l"
+        ],
+        "kind": "pipe_filter",
+        "severity": "critical",
+        "span": "wc -l",
+        "supported": true
+      }
+    ],
+    "delta": {
+      "exit_code_laundered": true,
+      "false_green": true,
+      "false_red": false,
+      "first_divergence_byte": 0,
+      "hidden_failure_markers": [
+        "AssertionError",
+        "Error",
+        "FAIL",
+        "FAILED"
+      ],
+      "hidden_stderr_excerpt": "",
+      "hidden_stderr_lines": 0,
+      "hidden_stdout_excerpt": "FAILED tests/test_a.py::test_one - AssertionError: expected 2, got 3\nFAILED tests/test_b.py::test_two - AssertionError: expected 2, got 3\ncollected 3 items\nOK",
+      "hidden_stdout_lines": 4,
+      "observed_exit_code": 0,
+      "reasons": [
+        "the agent's view looks successful while the real run failed",
+        "4 stdout line(s) never reached the agent",
+        "hidden failure markers: AssertionError, Error, FAIL, FAILED"
+      ],
+      "stderr_bytes_seen": 20,
+      "stderr_bytes_true": 20,
+      "stdout_bytes_seen": 2,
+      "stdout_bytes_true": 159,
+      "true_exit_code": 1,
+      "verdict": "MISLEADING"
+    },
+    "observation": {
+      "applied": [
+        "pipe wc -l",
+        "shell reported the last pipeline stage's exit status"
+      ],
+      "approximations": [],
+      "unsimulated": []
+    },
+    "rc": 1,
+    "refusals": []
+  }
+}

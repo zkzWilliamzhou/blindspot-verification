@@ -1,0 +1,21 @@
+blindspot
+Copyright 2026 blindspot contributors
+
+This Source Code Form is subject to the terms of the Mozilla Public License,
+v. 2.0. If a copy of the MPL was not distributed with this file, You can obtain
+one at https://mozilla.org/MPL/2.0/.
+
+External Agent Skills material in skills/ is reference documentation only.
+This sandbox has no outbound access to GitHub, npm, or raw.githubusercontent.com,
+so none of those repositories could be cloned or installed as executable skills.
+See skills/README.md for provenance and for which files are verbatim upstream
+copies versus reconstructions from public mirrors. Reconstructed files are NOT
+claimed to be installed or byte-identical to upstream.
+
+The research reports in docs/research/ were produced by delegated research
+agents and are reproduced as evidence. They contain claims and source URLs that
+were not independently re-verified by this project. Read them as inputs, not as
+authoritative statements.
+
+One skill IS shipped as part of this program: the root SKILL.md, in the Agent
+Skills format, authored here and covered by this NOTICE.
